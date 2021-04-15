@@ -22,7 +22,7 @@ class MovieHeader extends Component {
                             <LinkContainer to="/movielist">
                                 <Nav.Link disabled={!this.props.loggedIn}>Movie List</Nav.Link>
                             </LinkContainer>
-                            <LinkContainer to={'/movie/' + (this.props.selectedMovie ? this.props.selectedMovie.title : '')}>
+                            <LinkContainer to={'/movie/' + (this.props.selectedMovie ? this.props.selectedMovie.movie_title : '')}>
                                 <Nav.Link disabled={!this.props.loggedIn}>Movie Detail</Nav.Link>
                             </LinkContainer>
                             <LinkContainer to="/signin">

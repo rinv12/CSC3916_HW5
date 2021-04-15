@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { fetchMovie } from "../actions/movieActions";
+import {addReview, fetchMovie} from "../actions/movieActions";
 import {connect} from 'react-redux';
 import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
@@ -7,11 +7,46 @@ import { Image } from 'react-bootstrap';
 
 class MovieDetail extends Component {
 
+    constructor(props) {
+        super(props);
+        console.log('props', props);
+
+        this.updateDetails = this.updateDetails.bind(this);
+        this.submitReview = this.submitReview.bind(this);
+
+        this.state = {
+            details: {
+                title: '',
+                comment: '',
+                rating: 0
+            }
+        }
+    }
+
+    submitReview(){
+        const {dispatch} = this.props;
+        if(this.state.details.comment === "" || this.state.details.rating === 0){
+            alert("no rating or review")
+        }else{
+            dispatch(addReview(this.state.details));
+        }
+    }
+
     componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.selectedMovie == null) {
-            dispatch(fetchMovie(this.props.movieId));
+            dispatch(fetchMovie(this.props.movie_title));
         }
+    }
+
+    updateDetail(event){
+        let updateDetails = Object.assign({}, this.state.details);
+
+        updateDetails[event.target.id] = event.target.value;
+        updateDetails['title'] = this.props.selectedMovie.title;
+        this.setState({
+            details: updateDetails
+        });
     }
 
     render() {
@@ -27,7 +62,7 @@ class MovieDetail extends Component {
                         <Image className="image" src={this.props.selectedMovie.imageUrl} thumbnail />
                     </Card.Body>
                     <ListGroup>
-                        <ListGroupItem>{this.props.selectedMovie.title}</ListGroupItem>
+                        <ListGroupItem>{this.props.selectedMovie.movie_title}</ListGroupItem>
                         <ListGroupItem>
                             {this.props.selectedMovie.actors.map((actor, i) =>
                                 <p key={i}>
@@ -47,14 +82,14 @@ class MovieDetail extends Component {
                 </Card>
             )
         }
-
-        return (
-            <DetailInfo />
-        )
+        // return (
+        //     <DetailInfo />
+        //)
     }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
+    console.log()
     return {
         selectedMovie: state.movie.selectedMovie
     }
