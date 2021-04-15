@@ -9,7 +9,7 @@ import MovieDetail from "../components/moviedetail"
 function Movie(props) {
     const [selectedMovie] = useState(props.selectedMovie);
     const params = useParams();
-    const movie_title = params.movie_title;
+    const movie_title = params.title;
     console.log('params', params);
     const dispatch = useDispatch();
     if (selectedMovie == null) {
