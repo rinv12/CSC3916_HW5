@@ -82,9 +82,9 @@ class MovieDetail extends Component {
                 </Card>
             )
         }
-        // return (
-        //     <DetailInfo />
-        //)
+        return (
+            <DetailInfo />
+        )
     }
 }
 
