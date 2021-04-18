@@ -1,3 +1,13 @@
+## Problems
+Was able to register or login at first but as I fix my code it started giving me 
+cors errors. Not sure how to properly fix it.
+
+example error:
+
+> Access to fetch at 'https://csci3916-hw4-rin.herokuapp.com/signup' from origin 'https://csci3916-hw5-rin.herokuapp.com' has been blocked by CORS policy: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. If an opaque response serves your needs, set the request's mode to 'no-cors' to fetch the resource with CORS disabled.
+> 
+>csci3916-hw4-rin.herokuapp.com/signup:1 Failed to load resource: net::ERR_FAILED
+authActions.js:60 TypeError: Failed to fetch `
 # Heroku app link
 https://csci3916-hw5-rin.herokuapp.com/#/
 
