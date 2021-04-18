@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {addReview, fetchMovie} from "../actions/movieActions";
 import {connect} from 'react-redux';
-import {Card, ListGroup, ListGroupItem } from 'react-bootstrap';
+import {Button, Card, Form, ListGroup, ListGroupItem} from 'react-bootstrap';
 import { BsStarFill } from 'react-icons/bs'
 import { Image } from 'react-bootstrap';
 
@@ -35,7 +35,7 @@ class MovieDetail extends Component {
     componentDidMount() {
         const {dispatch} = this.props;
         if (this.props.selectedMovie == null) {
-            dispatch(fetchMovie(this.props.movie_title));
+            dispatch(fetchMovie(this.props.movie_id));
         }
     }
 
@@ -79,6 +79,19 @@ class MovieDetail extends Component {
                             </p>
                         )}
                     </Card.Body>
+                    <Card.Header>Add Review</Card.Header>
+                    <Form className= 'form-horizontal'>
+                        <Form.Group controlId= "movie comment">
+                            <Form.Label>Comment</Form.Label>
+                            <Form.Control onChange= {this.updateDetails} value = {this.state.details.comment} type = "Text" placeholder = "Write a comment"/>
+                        </Form.Group>
+
+                        <Form.Group controlId="rating">
+                            <Form.Label>Rating</Form.Label>
+                            <Form.Control onChange={this.updateDetails} value={this.state.details.rating} type = "Number" min = "1" max = "5" placeholder = "choose movie rate"/>
+                        </Form.Group>
+                        <Button onClick={this.submitReview}>Submit</Button>
+                    </Form>
                 </Card>
             )
         }
